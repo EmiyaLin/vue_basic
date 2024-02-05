@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,32 +8,38 @@
     <!-- 引入Vue -->
     <script src="../js/vue.js"></script>
     <style>
-        *{
+        * {
             margin-top: 20px;
         }
-        .demo1{
+
+        .demo1 {
             height: 50px;
             background-color: skyblue;
         }
-        .box1{
+
+        .box1 {
             padding: 5px;
             background-color: skyblue;
         }
-        .box2{
+
+        .box2 {
             padding: 5px;
             background-color: orange;
         }
-        .list{
+
+        .list {
             width: 200px;
             height: 200px;
             background-color: orangered;
             overflow: auto;
         }
-        li{
+
+        li {
             height: 100px;
         }
     </style>
 </head>
+
 <body>
     <!-- 
         Vue中的事件修饰符：
@@ -48,18 +55,20 @@
         <h2>欢迎来到{{name}}学习</h2>
         <!-- 阻止默认事件（常用） -->
         <a href="http://baidu.com" @click.prevent="showInfo">点我提示信息</a>
-        
+
         <!-- 阻止事件冒泡（常用） -->
         <div class="demo1" @click="showInfo">
             <button @click.stop="showInfo">点我提示信息</button>
+            <!-- 修饰符可以连续写 -->
+            <a href="http://baidu.com" @click.prevent.stop="showInfo">点我提示信息</a>
         </div>
 
         <!-- 事件只触发一次（常用） -->
         <button @click.once="showInfo">点我提示信息</button>
-        
+
         <!-- 使用事件的捕获模式 -->
         <div class="box1" @click.capture="showMsg(1)">
-        div1
+            div1
             <div class="box2" @click="showMsg(2)">
                 div2
             </div>
@@ -84,28 +93,29 @@
         Vue.config.productionTip = false; // 阻止 Vue 在启动时生成生产提示。
         // 创建一个Vue实例
         new Vue({
-          el: '#root', 
-          data: {
-            name: '尚硅谷',
-          },
-          methods:{
-            showInfo(e) {
-                // e.preventDefault();
-                // e.stopPropagation();
-                alert('同学你好')
-                // console.log(e.target);
+            el: '#root',
+            data: {
+                name: '尚硅谷',
             },
-            showMsg(msg) {
-                console.log(msg);
-            },
-            demo(){
-                for(let i = 0; i < 100000; i ++) {
-                    console.log('#');
+            methods: {
+                showInfo(e) {
+                    // e.preventDefault();
+                    // e.stopPropagation();
+                    alert('同学你好')
+                    // console.log(e.target);
+                },
+                showMsg(msg) {
+                    console.log(msg);
+                },
+                demo() {
+                    for (let i = 0; i < 100000; i++) {
+                        console.log('#');
+                    }
+                    console.log('累坏了');
                 }
-                console.log('累坏了');
             }
-          }
         })
     </script>
 </body>
+
 </html>
