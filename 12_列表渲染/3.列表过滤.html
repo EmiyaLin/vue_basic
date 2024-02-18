@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>基本列表</title>
+    <!-- 引入Vue -->
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 准备好一个容器 -->
+    <div id="root">
+        <!-- 遍历数组 -->
+        <h2>人员列表</h2>
+        <input type="text" value="请输入名字" v-model="keyWord">
+        <ul>
+            <li v-for="(p, index) in filpersons" :key="index">
+                {{p.name}}-{{p.age}}-{{p.sex}}
+            </li>
+        </ul>
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false; // 阻止 Vue 在启动时生成生产提示。
+        // 用watch实现
+        //#region 
+        // new Vue({
+        //     el: '#root',
+        //     data: {
+        //         keyWord: '',
+        //         persons: [
+        //             { id: '001', name: '马冬梅', age: 18, sex: '女' },
+        //             { id: '002', name: '周冬雨', age: 19, sex: '女' },
+        //             { id: '003', name: '周杰伦', age: 20, sex: '男' },
+        //             { id: '004', name: '温兆伦', age: 21, sex: '男' }
+        //         ],
+        //         filpersons: [],
+        //     },
+        //     watch: {
+        //         keyWord: {
+        //             immediate: true,
+        //             handler(value) {
+        //                 this.filpersons = this.persons.filter((p) => {
+        //                     return p.name.indexOf(value) !== -1
+        //                 })
+        //             }
+        //         }
+        //     }
+        // })
+        //#endregion
+
+        // 用computed实现
+        // 创建一个Vue实例
+         new Vue({
+            el: '#root',
+            data: {
+                keyWord: '',
+                persons: [
+                    { id: '001', name: '马冬梅', age: 18, sex: '女' },
+                    { id: '002', name: '周冬雨', age: 19, sex: '女' },
+                    { id: '003', name: '周杰伦', age: 20, sex: '男' },
+                    { id: '004', name: '温兆伦', age: 21, sex: '男' }
+                ],
+            },
+            computed: {
+                filpersons() {
+                    return this.persons.filter((p) => {
+                        return p.name.indexOf(this.keyWord) !== -1
+                    })
+                }
+            } 
+        })
+    </script>
+</body>
+
+</html>
