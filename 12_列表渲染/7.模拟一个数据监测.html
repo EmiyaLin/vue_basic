@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模拟一个数据监测</title>
+    <!-- 引入Vue -->
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <!-- 准备好一个容器 -->
+    <div id="root">
+        
+    </div>
+
+    <script type="text/javascript">
+        
+        let data = {
+            name: '尚硅谷',
+            address: '北京'
+        }
+
+        const obs = new Observer(data);
+
+        function Observer(obj) {
+            const keys = Object.keys(obj)
+
+            keys.forEach((k) => {
+                Object.defineProperty(this, k, {
+                    get() {
+                        return obj[k]
+                    },
+                    set(val) {
+                        obj[k] = val
+                    }
+                })
+            })
+        }
+
+    </script>
+</body>
+</html>
