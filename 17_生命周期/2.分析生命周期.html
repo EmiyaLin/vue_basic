@@ -12,7 +12,8 @@
     <div id="root">
         <h2>当前的n值是: {{n}}</h2>
         <button @click="add">点我n+1</button>
-    </div>
+        <button @click="bye">点我销毁vm</button>
+      </div>
 
     <script type="text/javascript">
         Vue.config.productionTip = false; // 阻止 Vue 在启动时生成生产提示。
@@ -20,26 +21,53 @@
         // 创建一个Vue实例
         new Vue({
           el: '#root', 
+          // template:`
+          // <div>        
+          //     <h2>当前的n值是: {{n}}</h2>
+          //     <button @click="add">点我n+1</button>
+          // </div>`,
           data: {
             n: 1,
           },
           methods: {
             add() {
-                this.n += 1
+              this.n += 1
+            },
+            bye() {
+              console.log('bye');
+              this.$destroy()
+            }
+          },
+          watch: {
+            n() {
+              console.log('n变了');
             }
           },
           beforeCreate() {
             console.log('beforeCreate')
-            debugger
           },
           created() {
             console.log('created')
           },
           beforeMount() {
-            console.log('beforeMount');
+            console.log('beforeMount')
           },
           mounted() {
             console.log('mounted')
+          },
+          beforeUpdate() {
+            console.log('beforeUpdate')
+          },
+          updated() {
+            console.log('updated')
+          },
+          beforeDestroy() {
+            console.log('beforeDestroy');
+            this.add()
+            console.log(this.n);
+          },
+          destroyed() {
+            console.log('destroyed');
           },
         })
     </script>
