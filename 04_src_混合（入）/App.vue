@@ -1,8 +1,8 @@
 <template>
   <div>
-    <School></School>
-    <hr>
     <Student></Student>
+    <hr>
+    <School></School>
   </div>
 </template>
 
@@ -16,6 +16,11 @@ export default {
     components: {
         Student,
         School,
+    },
+    data() {
+        return {
+            msg: '欢迎学习Vue'
+        }
     },
 }
 </script>
